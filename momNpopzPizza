@@ -1,0 +1,235 @@
+//------------------------------------------------------------------
+// File name:   momNpopzPizza.cpp
+// Assign ID:   PROG4
+// Due Date:    21 Feb 2022
+//
+// Purpose:     Process ONE order at pizza shop. Prices are read from 
+//              file 'prices.dat'. A customer order is taken: a 7.5% 
+//              sales tax is applied to the order amount. The customer
+//              pays for the order and is given a customer receipt. 
+//              The order is written to output file 'sales.dat'. 
+//
+// Author:      hallD241 Daylen Hall 
+//------------------------------------------------------------------
+
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+   //----------------------------------------------------------------------
+   //  Declare variables, ONE PER LINE.
+   //----------------------------------------------------------------------
+
+         // Input/Output file streams.   DO NOT TOUCH!!
+   ifstream pricesF("prices.dat"); // Input file containing prices.
+   ofstream salesF("sales.dat");   // Output file containing sale summary.
+
+         // Input variables -- prices.dat file data.
+   float cost_Pizza,          // Cost of today's pizza.
+         cost_Drinks,         // Cost of 2L drink. 
+         cost_Bread,          // Cost of 6 bread sticks. 
+         cost_Cookies,        // Cost of big cookie.
+         pizza_Cost,          // Price of the pizza.
+         drink_Cost,          // Price of the drink. 
+         bread_Cost,          // Cost of the bread. 
+         cookie_Cost,         // Cost of the cookie. 
+         amt_Tendered;        // Amount the customer pays. 
+
+
+         // Input variables -- customer order from keyboard.
+   int   num_Pizzas,          // Number of pizzas ordered.
+         num_Drinks,          // NUmber of drinks ordered.
+         num_Bread,           // Orders of bread ordered.
+         num_Cookies;         // Number of cookies ordered.
+
+
+         // Calculated variables.
+   float order_Amt,          // Amount of order, before taxes.
+         amt_Due,            // Price after tax.
+         sales_Tax,          // Sales tax.
+         change_Received,    // Change paid to customer.
+         amt_Change;         // Change paid back to the customer.
+
+
+   //-|---------------------------------------------------------------------
+   //-| Display the copyright notice declaring authorship.
+   //-|---------------------------------------------------------------------
+   
+   cout << endl << "(c) 2022,  hallD241 Daylen Hall" << endl << endl; 
+
+
+   //-|---------------------------------------------------------------
+   //-| 1. INPUT (I): Read prices for today's menu from input file.
+   //-|    1.1 cost of pizza.
+   //-|    1.2 
+   //-|    1.3 cost of pizza.
+   //-|---------------------------------------------------------------
+       
+   pricesF >> pizza_Cost >> drink_Cost >> bread_Cost >> cookie_Cost;
+
+
+   //-|---------------------------------------------------------------
+   //-| 2. OUTPUT (O): Display today's menu to screen.
+   //-|    2.1 Cost  of today's pizza.
+   //-|    2.2 Cost  of today's pizza.
+   //-|    2.3 Cost  of today's pizza.
+   //-|---------------------------------------------------------------
+   
+   cout << endl << fixed << showpoint << setprecision(2);
+
+   cout << "TODAY'S MENU at MOM-N-POPZ PIZZA" << endl;
+   cout << endl;
+
+
+   cout << "    $  " << pizza_Cost << " - Pizza of the Day" << endl;
+   cout << "    $  " << drink_Cost << " - 2L Drink" << endl;
+   cout << "    $  " << bread_Cost << " - Bread Sticks(6)" << endl;
+   cout << "    $  " << cookie_Cost << " - Big Cookie" << endl << endl;
+ 
+   
+   //-|---------------------------------------------------------------
+   //-| 3. INPUT (I): Read customer order from keyboard.
+   //-|    3.1 number of pizzas (num_Pizzas).
+   //-|    3.2 
+   //-|    3.3 
+   //-|---------------------------------------------------------------
+
+   cout << "Enter number of Pizzas: ";
+   cin >> num_Pizzas;
+   cout << endl;
+
+   cout << "Enter number of Drinks: "; 
+   cin >> num_Drinks;
+   cout << endl;
+
+   cout << "Enter number of Bread Stick orders: ";
+   cin >> num_Bread; 
+   cout << endl;
+
+   cout << "Enter number of Cookies: ";
+   cin >> num_Cookies;
+   cout << endl << endl;
+
+
+   //-|---------------------------------------------------------------
+   //-| 4. PROCESS (P) Calculate amount due.
+   //-|    4.1 Compute order_Amt = 
+   //-|    4.2 
+   //-|    4.3
+   //-|---------------------------------------------------------------
+
+   cost_Pizza = pizza_Cost * num_Pizzas;
+   cost_Drinks = drink_Cost * num_Drinks;
+   cost_Bread = bread_Cost * num_Bread;
+   cost_Cookies = cookie_Cost * num_Cookies;
+   order_Amt = cost_Pizza + cost_Drinks + cost_Bread + cost_Cookies;
+   sales_Tax = order_Amt * 0.075;
+   amt_Due = sales_Tax + order_Amt;
+
+
+   //-|---------------------------------------------------------------
+   //-| 5. OUTPUT (O) Display Amount Due to screen.
+   //-|---------------------------------------------------------------
+   
+   cout << "Amount Due: $" << amt_Due << endl << endl;
+
+
+   //-|---------------------------------------------------------------
+   //-| 6. INPUT (I): Read amount tendered by customer (amt_Tendered)
+   //-|               from keyboard.
+   //-|---------------------------------------------------------------
+
+   cout << "Enter payment: ";
+   cin >> amt_Tendered;
+   cout << endl << endl;
+
+  
+   //-|---------------------------------------------------------------
+   //-| 7. PROCESS (P) Calculate amt_Change = amt_Tendered - amt_Due.
+   //-|---------------------------------------------------------------
+    
+   amt_Change = amt_Tendered - amt_Due;
+   
+
+   //-|--------------------------------------------------------------------
+   //-| 8. OUTPUT (O) Display Customer Receipt to screen.
+   //-|    8.1 Receipt caption.
+   //-|    8.2 Order caption.
+   //-|    8.3 Number of pizzas.
+   //-|    8.5 Number of drinks.
+   //-|    8.6 Number of bread stick orderrs.
+   //-|    8.7 Number of big cookies.
+   //-|    8.8 Payment caption. 
+   //-|    8.9 order amount. 
+   //-|    8.10 sales tax. 
+   //-|    8.11 amount due. 
+   //-|    8.12 amount tendered. 
+   //-|    8.13 change.
+   //-|    8.14 thank-you caption.
+   //-|    8.15 Receipt footer.
+   //-|
+   //-| NOTE***** The receipt is FORMATTED!!
+   //-|---------------------------------------------------------------
+
+   cout << "CUSTOMER RECEIPT" << endl;
+
+   cout << "=====================================" << endl << endl;
+
+   cout << "YOUR ORDER:" << endl << endl;
+
+   cout << "    #Pizzas  =   " << num_Pizzas << endl;
+   cout << "    #Drinks  =  " << num_Drinks << endl;
+   cout << "    #Breads  =  " << num_Bread << endl;
+   cout << "    #Cookies =   " << num_Cookies << endl << endl;
+
+   cout << "YOUR PAYMENT:" << endl << endl;
+
+   cout << "     " << "AMOUNT OF ORDER = $  " << order_Amt << endl; 
+   cout << "     " << "SALES TAX       = $  " << sales_Tax << endl;
+   cout << "     " << "AMOUNT DUE      = $  " << amt_Due << endl;
+   cout << "     " << "AMOUNT TENDERED = $  " << amt_Tendered << endl;
+   cout << "     " << "CHANGE RECEIVED = $  " << amt_Change << endl << endl;
+
+   cout << "THANKS FOR YOUR BUSINESS. COME AGAIN." << endl << endl;
+
+   cout << "=====================================" << endl << endl;
+
+   cout << "CUSTOMER RECEIPT" << endl;
+
+
+   //-|---------------------------------------------------------------
+   //-| 9. OUTPUT (O) Write sale to output file.
+   //-|    9.1 Number of pizzas.
+   //-|    9.3 Number of bread stick orders.
+   //-|    9.2 Number of drinks.
+   //-|    9.4 Number of big cookies.
+   //-|    9.5 Order amount.
+   //-|---------------------------------------------------------------
+   
+   salesF << fixed << showpoint << setprecision(2); 
+
+   salesF << "CUSTOMER ORDER: " << num_Pizzas << " Pizzas, " << num_Drinks 
+          << " Drinks, "  << num_Bread << " Breadsticks, " << num_Cookies 
+          << " Cookies ==> $ " << order_Amt << " SALE";
+ 
+    
+   //-|---------------------------------------------------------------
+   //-| 10. Last: Close input and output files. DO NOT TOUCH!!
+   //-|---------------------------------------------------------------
+   
+   pricesF.close();
+   salesF << flush; salesF.close();
+
+
+   //-|---------------------------------------------------------------------
+   //-| Display the copyright notice declaring authorship again.
+   //-|---------------------------------------------------------------------
+   
+   cout << endl << endl << "(c) 2022, hallD241 Daylen Hall" << endl; 
+
+   return 0;
+
+}//main
